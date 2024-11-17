@@ -1,0 +1,18 @@
+name: MonyxCustomArmoryv2
+version: '2.1'
+main: xyz.monyxnetwork.monyxCustomArmoryv2.MonyxCustomArmoryv2
+api-version: '1.20'
+prefix: Monyx Plugin
+authors: [ Arnov ]
+description: Official Plugins Monyx Network
+website: monyxnetwork.xyz
+depend: [NBTAPI]
+commands:
+  monyxcustomarmory:
+    description: Main command for MonyxCustomArmory
+    usage: /<commnand> [args]
+    aliases: [mca]
+permissions:
+  monyxcustomarmory.give:
+    description: Allows the player to use the /mca give command
+    default: op
