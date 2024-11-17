@@ -3,6 +3,7 @@ package xyz.monyxnetwork.monyxCustomArmoryv2.listeners;
 import de.tr7zw.nbtapi.NBTItem;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.util.Vector;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -479,5 +480,21 @@ public class CustomToolListener implements Listener {
         short newDurability = (short) Math.max(0, tool.getDurability() - repairAmount);
 
         tool.setDurability(newDurability);
+    }
+
+    private void applyEmperorsWrathGreatBladeEffects(Player player, LivingEntity target) {
+        // Tingkatkan damage sebesar 15%
+        double damageIncrease = 0.15;
+        double baseDamage = 5.0; // Misalkan base damage adalah 5.0
+        double totalDamage = baseDamage * (1 + damageIncrease);
+        target.damage(totalDamage, player);
+
+        // Peluang 20% untuk memberikan efek Wither
+        if (random.nextDouble() < 0.20) {
+            target.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 40, 1)); // 2 detik (40 ticks)
+            if (target instanceof Player targetPlayer) {
+                targetPlayer.sendMessage(ChatColor.DARK_PURPLE + "You have been struck by the Emperor's Wrath!");
+            }
+        }
     }
 }
